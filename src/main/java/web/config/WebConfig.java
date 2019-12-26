@@ -46,6 +46,7 @@ public class WebConfig implements WebMvcConfigurer {
     public MessageSource messageSource() {
         ResourceBundleMessageSource resource = new ResourceBundleMessageSource();
         resource.setBasename("messages");
+        resource.setDefaultEncoding("utf-8");
         return resource;
     }
 
