@@ -17,12 +17,14 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import web.model.Car;
 
 import javax.sql.DataSource;
+import java.util.Locale;
 import java.util.Properties;
 
 @Configuration
@@ -95,5 +97,12 @@ public class WebConfig implements WebMvcConfigurer {
         return transactionManager;
     }
 
-
+    @Bean
+    public CookieLocaleResolver localeResolver(){
+        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
+        localeResolver.setDefaultLocale(Locale.ENGLISH);
+        localeResolver.setCookieName("my-locale-cookie");
+        localeResolver.setCookieMaxAge(3600);
+        return localeResolver;
+    }
 }
