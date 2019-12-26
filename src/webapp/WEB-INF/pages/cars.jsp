@@ -1,14 +1,17 @@
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <body>
 <div align="center">
 
-    <table >
+    <table border="3">
+        <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Series</th>
+            <th><spring:message code="label.name"/></th>
+            <th><spring:message code="label.series"/></th>
         </tr>
+        </thead>
 
         <c:forEach var="msq" items="${messages}">
             <tr>
