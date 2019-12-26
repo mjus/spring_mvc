@@ -14,17 +14,13 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import web.model.Car;
+import web.model.User;
 
 import javax.sql.DataSource;
-import java.util.Locale;
 import java.util.Properties;
 
 @Configuration
@@ -49,14 +45,6 @@ public class WebConfig implements WebMvcConfigurer {
         return resource;
     }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        LocaleChangeInterceptor localeChangeInteceptor = new LocaleChangeInterceptor();
-        localeChangeInteceptor.setParamName("language");
-        registry.addInterceptor(localeChangeInteceptor);
-    }
-
-
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -77,7 +65,7 @@ public class WebConfig implements WebMvcConfigurer {
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 
         factoryBean.setHibernateProperties(props);
-        factoryBean.setAnnotatedClasses(Car.class);
+        factoryBean.setAnnotatedClasses(User.class);
         return factoryBean;
     }
 
@@ -95,14 +83,5 @@ public class WebConfig implements WebMvcConfigurer {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(getSessionFactory().getObject());
         return transactionManager;
-    }
-
-    @Bean
-    public CookieLocaleResolver localeResolver(){
-        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.ENGLISH);
-        localeResolver.setCookieName("my-locale-cookie");
-        localeResolver.setCookieMaxAge(3600);
-        return localeResolver;
     }
 }
