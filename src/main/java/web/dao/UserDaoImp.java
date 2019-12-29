@@ -44,4 +44,9 @@ public class UserDaoImp implements UserDao {
             session.delete(persistentInstance);
         }
     }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return sessionFactory.getCurrentSession().get(User.class, email);
+    }
 }

@@ -1,9 +1,10 @@
 package web.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "cars")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -14,20 +15,19 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String last_name;
 
-    @Column(name="email")
+    @Column(name = "email", unique = true)
     private String email;
 
-    public User() {
-    }
+    @Column(name = "password")
+    private String password;
 
-    public User(Long id, String name, String last_name, String email) {
-        this.id = id;
-        this.name = name;
-        this.last_name = last_name;
-        this.email = email;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
+    public User() {
     }
 
     public User(String name, String last_name, String email) {
@@ -36,7 +36,20 @@ public class User {
         this.email = email;
     }
 
+    public User(long id, String name, String last_name, String email) {
+        this.id = id;
+        this.name = name;
+        this.last_name = last_name;
+        this.email = email;
+    }
 
+    public User(String name, String last_name, String email, String password, Set<Role> roles) {
+        this.name = name;
+        this.last_name = last_name;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;
@@ -68,5 +81,21 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

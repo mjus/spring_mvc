@@ -2,7 +2,6 @@ package web.dao;
 
 import web.model.User;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDao {
@@ -16,4 +15,6 @@ public interface UserDao {
     void update(User user);
 
     void delete(long id);
+
+    User findUserByEmail(String email);
 }

@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html xmlns:th="http://www.thymeleaf.org">
 <html>
 <head>
     <title>Users</title>
@@ -21,8 +23,8 @@
         </tr>
         </thead>
         <tr>
-            <form action="/users" method="post">
-                <th><input type="hidden" name="action" value="add"></th>
+            <form action="${pageContext.request.contextPath}/users/add" method="POST">
+                <th></th>
                 <th><input type="text" name="name"></th>
                 <th><input type="text" name="last_name"></th>
                 <th><input type="text" name="email"></th>
@@ -32,24 +34,21 @@
                 <th></th>
             </form>
         </tr>
+        </thead>
         <c:forEach var="user" items="${users}">
             <tr>
-                <td> ${user.id}</td>
-                <td> ${user.name}</td>
-                <td> ${user.last_name}</td>
-                <td> ${user.email}</td>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.last_name}</td>
+                <td>${user.email}</td>
                 <td>
-                    <form action="/users" method="get">
-                        <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="id" value=${user.id}>
-                        <input type="submit" value="update"></type>
+                    <form action="${pageContext.request.contextPath}/users/update/${user.id}" method="GET">
+                        <input type="submit" value="update">
                     </form>
                 </td>
                 <td>
-                    <form action="/users" method="post">
-                        <input type="hidden" name="action" value="delete">
-                        <input type="hidden" name="id" value=${user.id}>
-                        <input type="submit" value="delete"></type>
+                    <form action="${pageContext.request.contextPath}/users/delete/${user.id}" method="POST">
+                        <input type="submit" value="delete">
                     </form>
                 </td>
             </tr>
