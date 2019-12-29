@@ -9,13 +9,7 @@
 
     <h2>Welcome!!!</h2><br/>
 
-
-    <div th:if="${param.error}">
-    </div>
-    <div th:if="${param.logout}">
-    </div>
-
-    <form method="post" action="login">
+    <form action="${pageContext.request.contextPath}/login" method="POST">
 
         <table border="3">
             <tr>

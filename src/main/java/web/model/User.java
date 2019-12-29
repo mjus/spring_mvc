@@ -24,9 +24,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<Role> roles;
-
     public User() {
     }
 
@@ -41,14 +38,6 @@ public class User {
         this.name = name;
         this.last_name = last_name;
         this.email = email;
-    }
-
-    public User(String name, String last_name, String email, String password, Set<Role> roles) {
-        this.name = name;
-        this.last_name = last_name;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
     }
 
     public Long getId() {
@@ -89,13 +78,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }

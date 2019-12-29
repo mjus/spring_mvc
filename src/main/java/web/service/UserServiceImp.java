@@ -6,14 +6,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import web.dao.UserDao;
-import web.model.AuthorizedUser;
 import web.model.User;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class UserSeviceImp implements UserService, UserDetailsService {
+public class UserServiceImp implements UserService {
 
     @Autowired
     private UserDao userDao;
@@ -46,14 +45,5 @@ public class UserSeviceImp implements UserService, UserDetailsService {
     @Override
     public void delete(long id) {
         userDao.delete(id);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userDao.findUserByEmail(login);
-        if (user == null) {
-            throw new UsernameNotFoundException(login);
-        }
-        return new AuthorizedUser(user);
     }
 }
