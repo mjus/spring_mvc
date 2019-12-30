@@ -37,9 +37,11 @@ public class AdminController {
     }
 
     @PostMapping(value = "users/add")
-    public View addUser(@RequestParam(value = "name", required = false) String name
+    public View addUser(@ModelAttribute()
+            @RequestParam(value = "name", required = false) String name
             , @RequestParam(value = "password", required = false) String password
             , @RequestParam(value = "email", required = false) String email) {
+
         userService.add(new User(name, password, email));
         return new RedirectView("/admin/users");
     }
