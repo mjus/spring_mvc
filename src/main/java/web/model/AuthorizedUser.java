@@ -13,7 +13,6 @@ public class AuthorizedUser implements UserDetails {
         this.user = user;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getRoles();
