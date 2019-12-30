@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: iuliiamalykh
-  Date: 28/12/19
-  Time: 21:21
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -16,7 +9,7 @@
 
     <h2>Update user</h2><br/>
 
-    <form action="${pageContext.request.contextPath}/admin/users/update/${user.id}" method="POST">
+    <form action="${pageContext.request.contextPath}/users/update/${user.id}" method="POST">
 
         <table border="3">
             <tr>
@@ -25,9 +18,9 @@
                 <th>name</th>
             </tr>
             <tr>
-                <th>${user.password}</th>
-                <th><label><input type="text" name="password"></label></th>
-                <th>password</th>
+                <th>${user.last_name}</th>
+                <th><label><input type="text" name="last_name"></label></th>
+                <th>last_name</th>
             </tr>
             <tr>
                 <th>${user.email}</th>

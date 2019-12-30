@@ -1,18 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: iuliiamalykh
-  Date: 28/12/19
-  Time: 19:21
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>User</title>
-</head>
-<div align="center">
-    <h3>Hi user!!!</h3>
-    <a href="/logout">logout</a></div>
 
+<html>
+<body>
+<div align="center">
+<jsp:include page="logout.jsp"/>
+<br>
+<c:forEach var="msq" items="${messages}">
+    <h1>${msq}</h1>
+</c:forEach>
+<br>
+</div>
 </body>
 </html>

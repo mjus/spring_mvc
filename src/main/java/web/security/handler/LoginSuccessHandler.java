@@ -1,4 +1,4 @@
-package web.config.handler;
+package web.security.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -53,9 +53,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         }
 
         if (isUser) {
-            return "/user/hello";
+            return "/hello";
         } else if (isAdmin) {
-            return "/admin/users";
+            return "/users";
         } else {
             throw new IllegalStateException();
         }

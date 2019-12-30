@@ -1,4 +1,4 @@
-package web.dao;
+package web.repository;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,8 +10,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class UserDaoImp implements UserDao {
-
+public class UserDAOHibernate implements UserDao {
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -46,9 +45,9 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User where email = :email", User.class);
-        query.setParameter("email", email);
+    public User getUserByLogin(String login) {
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User where login = :userLogin", User.class);
+        query.setParameter("userLogin", login);
         return query.getSingleResult();
     }
 }

@@ -1,11 +1,10 @@
-package web.dao;
+package web.repository;
 
 import web.model.User;
 
 import java.util.List;
 
 public interface UserDao {
-
     void add(User user);
 
     User get(long id);
@@ -16,5 +15,5 @@ public interface UserDao {
 
     void delete(long id);
 
-    User findUserByEmail(String email);
+    User getUserByLogin(String login);
 }

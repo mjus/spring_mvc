@@ -1,15 +1,16 @@
 package web.service;
 
+import web.model.AuthorizedUser;
+import web.model.User;
+import web.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import web.dao.UserDao;
-import web.model.User;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserServiceImp implements UserService, UserDetailsService {
@@ -50,10 +51,10 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Transactional
     @Override
     public UserDetails loadUserByUsername(String login) {
-        User user = userDao.findUserByEmail(login);
+        User user = userDao.getUserByLogin(login);
         if (user == null) {
             throw new UsernameNotFoundException(login);
         }
-        return user;
+        return new AuthorizedUser(user);
     }
 }
