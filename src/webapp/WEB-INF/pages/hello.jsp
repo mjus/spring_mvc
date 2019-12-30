@@ -12,8 +12,7 @@
 </head>
 <div align="center">
     <h3>Hi user!!!</h3>
-    <h3>You can do nothing!!!</h3>
-    <a href="/logout">exit</a></div>
+    <a href="/logout">logout</a></div>
 
 </body>
 </html>

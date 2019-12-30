@@ -1,5 +1,8 @@
 package web.model;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -15,28 +18,28 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "last_name")
-    private String last_name;
-
     @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
     private String password;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
     public User() {
     }
 
-    public User(String name, String last_name, String email) {
+    public User(String name, String password, String email) {
         this.name = name;
-        this.last_name = last_name;
+        this.password = password;
         this.email = email;
     }
 
-    public User(long id, String name, String last_name, String email) {
+    public User(long id, String name, String password, String email) {
         this.id = id;
         this.name = name;
-        this.last_name = last_name;
+        this.password = password;
         this.email = email;
     }
 
@@ -56,14 +59,6 @@ public class User {
         this.name = name;
     }
 
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -78,5 +73,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
