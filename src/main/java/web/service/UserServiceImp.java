@@ -1,6 +1,5 @@
 package web.service;
 
-import web.model.AuthorizedUser;
 import web.model.User;
 import web.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +54,6 @@ public class UserServiceImp implements UserService, UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(login);
         }
-        return new AuthorizedUser(user);
+        return user;
     }
 }
