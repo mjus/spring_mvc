@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>users</title>
+</head>
+<body>
+<a th:insert="~{logout :: logout}"></a>
+<br>
+<br>
+<table border="3">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>last_name</th>
+        <th>email</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tr>
+        <form th:action="@{/users/add}" th:method="post">
+            <th></th>
+            <th><input type="text" name="name"></th>
+            <th><input type="text" name="last_name"></th>
+            <th><input type="text" name="email"></th>
+            <th>
+                <input type="submit" value="add"></type>
+            </th>
+            <th></th>
+        </form>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.last_name}"></td>
+        <td th:text="${user.email}"></td>
+        <td>
+            <form th:action="@{/users/update/{id}(id=${user.id})}" th:method="get">
+                <input type="submit" value="edit">
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/users/delete/{id}(id=${user.id})}" th:method="post">
+                <input type="submit" value="delete">
+            </form>
+        </td>
+    </tr>
+    </th:forEach>
+</table>
+</div>
+</body>
+</html>

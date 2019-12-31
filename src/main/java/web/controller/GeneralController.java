@@ -46,7 +46,7 @@ public class GeneralController {
     @GetMapping(value = "users/update/{id}")
     public ModelAndView getUserUpdate(@PathVariable("id") long userId) {
         User user = userService.getUserById(userId);
-        ModelAndView modelAndView = new ModelAndView("userEdit");
+        ModelAndView modelAndView = new ModelAndView("update");
         modelAndView.addObject("user", user);
         return modelAndView;
     }
@@ -60,7 +60,7 @@ public class GeneralController {
     }
 
     @PostMapping(value = "users/update/{id}")
-    public View updateUser(@PathVariable("id") long userId, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "last_name", required = false) String last_name, @RequestParam(value = "age", required = false) String email) {
+    public View updateUser(@PathVariable("id") long userId, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "last_name", required = false) String last_name, @RequestParam(value = "email", required = false) String email) {
         if (isValidate(name, last_name, email)) {
             userService.update(new User(userId, name, last_name, email));
         }
