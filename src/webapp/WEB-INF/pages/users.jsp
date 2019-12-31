@@ -36,6 +36,7 @@
     </tr>
     <c:forEach var="user" items="${users}">
         <tr>
+            <td>${user.id}</td>
             <td>${user.name}</td>
             <td>${user.last_name}</td>
             <td>${user.email}</td>
